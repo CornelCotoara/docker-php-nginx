@@ -41,6 +41,10 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
 RUN mkdir -p /var/www/html
+RUN wget -O SPFG_4.8.1.zip https://sye.dk/sfpg/Single_File_PHP_Gallery_4.8.1.zip &&\
+unzip -d /var/www/html SPFG_4.8.1.zip &&\
+mkdir -p /media/gallery &&\
+ln -s /var/www/html/gallery /media/gallery
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/html && \
@@ -53,11 +57,6 @@ USER nobody
 
 # Add application
 WORKDIR /var/www/html
-RUN wget -O SPFG_4.8.1.zip https://sye.dk/sfpg/Single_File_PHP_Gallery_4.8.1.zip &&\
-unzip -d /var/www/html SPFG_4.8.1.zip &&\
-mkdir -p /media/gallery &&\
-ln -s /var/www/html/gallery /media/gallery
-
 COPY --chown=nobody src/ /var/www/html/
 
 # Expose the port nginx is reachable on
