@@ -41,8 +41,8 @@ COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 # Setup document root
 RUN mkdir -p /var/www/html
-RUN wget -O SPFG_4.8.1.zip https://sye.dk/sfpg/Single_File_PHP_Gallery_4.8.1.zip &&\
-unzip -d /var/www/html SPFG_4.8.1.zip &&\
+RUN wget -O SPFG_4.10.0.zip https://sye.dk/sfpg/Single_File_PHP_Gallery_4.10.0.zip &&\
+unzip -d /var/www/html SPFG_4.10.0.zip &&\
 mkdir -p /media/gallery &&\
 ln -s /var/www/html/gallery /media/gallery
 
